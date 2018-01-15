@@ -31,12 +31,51 @@ class Index
         }
     }
 
+    /**
+     * @return \think\response\Json
+     * [
+     * 2012:[
+     *  [],[]
+     * ],
+     * 2013:[
+     *  [],[]
+     * ]
+     * ]
+     */
     public function getTimeLineData()
     {
-        try{
-            $data = Db::name('article')->select();
-            return json(msg(0, 'success',$data));
-        }catch(Exception $e){
+        try {
+            $data = Db::name('article')->order('date desc,time desc')->select();
+            array_walk($data, function (&$v) {
+                $v['year'] = date('Y', $v['date']);
+                $v['month'] = date('m', $v['date']);
+                $v['day'] = date('d', $v['date']);
+                $v['time'] = date('H:i:s', $v['time']);
+            });
+            $yearArr = array_column($data, 'year');
+
+            $tmp = [];
+            foreach ($data as $k => $v) {
+                if (!array_key_exists($v['year'], $tmp)) {
+                    $tmp[$v['year']] = [];
+                } else {
+                    continue;
+                }
+                foreach ($data as $k1 => $v1) {
+                    if ($k == $k1) {
+                        continue;
+                    }
+                    if ($v1['year'] == $v['year']) {
+                        $tmp[$v['year']][] = $v1;
+                    }
+                }
+            }
+            $res = [
+                'year' => $yearArr,
+                'data' => $tmp
+            ];
+            return json(msg(0, 'success', $res));
+        } catch (Exception $e) {
             return json(msg(1, $e->getMessage()));
         }
     }
