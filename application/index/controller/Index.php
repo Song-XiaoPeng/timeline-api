@@ -51,7 +51,7 @@ class Index
                 $v['day'] = date('d', $v['date']);
                 $v['time'] = date('H:i:s', $v['time']);
             });
-            $yearArr = array_column($data, 'year');
+            $yearArr = array_unique(array_column($data, 'year'));
 
             $tmp = [];
             foreach ($data as $k => $v) {
