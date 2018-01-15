@@ -17,9 +17,8 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    'timeline'=>[
+    '[timeline]'=>[
         'addArticle'=>['index/addArticle',['method'=>'post']],
         'getTimeLineData'=>['index/getTimeLineData',['method'=>'get']]
     ]
-
 ];

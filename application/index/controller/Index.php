@@ -14,8 +14,7 @@ class Index
 {
     public function index()
     {
-        return "<p>欢迎</p><a href='http://sone.timeline.hellobirds.top/Timeline.html'>sone的好看的时光轴</a><br /><a href='http://sone.timeline.hellobirds.top'>sone的时光轴</a><br />
-<a href='http://sone.hellobirds.top'>sone的博客</a>";
+        return "<p>欢迎</p><a href='http://sone.timeline.hellobirds.top/Timeline.html'>sone的好看的时光轴</a><br /><a href='http://sone.timeline.hellobirds.top'>sone的时光轴</a><br /><a href='http://sone.hellobirds.top'>sone的博客</a>";
     }
 
     public function addArticle()
