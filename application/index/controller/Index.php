@@ -68,7 +68,6 @@ class Index
                     }
                 }
             }
-            halt($tmp);
 
             $res = [
                 'year' => $yearArr,
