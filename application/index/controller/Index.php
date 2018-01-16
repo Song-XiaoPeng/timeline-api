@@ -52,7 +52,6 @@ class Index
                 $v['time'] = date('H:i:s', $v['time']);
             });
             $yearArr = array_unique(array_column($data, 'year'));
-
             $tmp = [];
             foreach ($data as $k => $v) {
                 if (!array_key_exists($v['year'], $tmp)) {
@@ -61,14 +60,16 @@ class Index
                     continue;
                 }
                 foreach ($data as $k1 => $v1) {
-                    if ($k == $k1) {
-                        continue;
+                    if ($k == $k1) {//@!! debug 若忽略掉自身的话，结果会将第一条数据排除在外
+                        //continue;
                     }
                     if ($v1['year'] == $v['year']) {
                         $tmp[$v['year']][] = $v1;
                     }
                 }
             }
+            halt($tmp);
+
             $res = [
                 'year' => $yearArr,
                 'data' => $tmp
