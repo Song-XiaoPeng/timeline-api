@@ -21,8 +21,8 @@ class Index
     {
         try {
             $data = input();
-            $data['date'] = strtotime(date('ymd', time()));//年月日
-            $data['time'] = time() - strtotime(date('ymd', time()));//时间
+            $data['date'] = strtotime(date('Y-m-d', time()));//年月日
+            $data['time'] = time() - strtotime(date('Y-m-d', time()));//时间
             Db::name('article')->insert($data);
             return json(msg(0, 'success'));
         } catch (Exception $e) {
