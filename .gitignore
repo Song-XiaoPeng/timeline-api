@@ -2,5 +2,5 @@
 composer.lock
 *.log
 thinkphp
-travis.yml
 misc/apache_sxp.conf
+.travis.yml
