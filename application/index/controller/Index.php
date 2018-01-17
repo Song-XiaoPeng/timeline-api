@@ -5,6 +5,7 @@
  * Date: 2018/1/15 0015
  * Time: 17:53
  */
+
 namespace app\index\controller;
 
 use think\Exception;
@@ -44,7 +45,7 @@ class Index
     public function getTimeLineData()
     {
         try {
-            $data = Db::name('article')->order('date desc,time desc')->select();
+            $data = Db::name('article')->order('date desc,time desc')->where('status', 0)->select();
             array_walk($data, function (&$v) {
                 $v['year'] = date('Y', $v['date']);
                 $v['month'] = date('m', $v['date']);
